@@ -1,6 +1,7 @@
 package com.patikadev.View;
 
 import com.patikadev.Helper.Config;
+import com.patikadev.Helper.DBConnector;
 import com.patikadev.Helper.Helper;
 import com.patikadev.Model.Operator;
 
@@ -45,7 +46,10 @@ public class OperatorGUI  extends JFrame {
         op.setType("Operator");
         op.setUsername("Kagan");
 
+        DBConnector.getInstance();
+
         OperatorGUI operatorGUI= new OperatorGUI(op);
+
 
 
     }
