@@ -7,8 +7,9 @@ import com.patikadev.Model.Operator;
 import com.patikadev.Model.User;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class OperatorGUI  extends JFrame {
     private final Operator operator;
@@ -20,6 +21,12 @@ public class OperatorGUI  extends JFrame {
     private JButton btn_logout;
     private JScrollPane scrl_user_list;
     private JTable tbl_user_list;
+    private JPanel pnl_user_form;
+    private JTextField fld_user_name;
+    private JTextField fld_user_uname;
+    private JTextField fld_user_pass;
+    private JComboBox cmb_user_type;
+    private JButton btn_user_add;
     private DefaultTableModel mdl_user_list;
     private  Object[] row_user_list;
 
@@ -73,6 +80,26 @@ public class OperatorGUI  extends JFrame {
         // Tablodaki column isimlerinin yerlerininin değişmemesi için yapılan işlem.
         tbl_user_list.getTableHeader().setReorderingAllowed(false);
 
+        btn_user_add.addActionListener(e -> {
+    if(Helper.isFieldEmpty(fld_user_name) || Helper.isFieldEmpty(fld_user_uname) || Helper.isFieldEmpty(fld_user_pass)    ){
+
+        // Hata verdirme işlemi
+        Helper.showMessage("Manuel eklendi");
+    }else{
+
+    String name = fld_user_name.getText();
+    String uname = fld_user_uname.getText();
+    String pass = fld_user_pass.getText();
+    String type = cmb_user_type.getSelectedItem().toString();
+    if(User.add(name,uname,pass,type)){
+        Helper.showMessage("done");
+    }else{
+        Helper.showMessage("error");
+    }
+    }
+
+
+        });
     }
 
     public static void main(String[] args) {

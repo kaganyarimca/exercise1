@@ -36,4 +36,41 @@ public class Helper {
 
     }
 
+
+    public static boolean isFieldEmpty(JTextField field){
+        return  field.getText().trim().isEmpty() ;
+
+    }
+
+    public static  void showMessage(String str){
+        optionPaneTR();
+        String msg ;
+        String title;
+        switch (str){
+            case "fill":
+                msg = "Lütfen tüm alanları doldurunuz!";
+                title = "Hata";
+                break;
+            case "done":
+                msg =  "İşlem başarılı.";
+                title = "İşlem başarılı";
+            case "error":
+                msg = "Bir hata oluştu";
+                title = "Hata";
+
+
+
+            default:
+                msg = str;
+                title = "Mesaj";
+        }
+
+        JOptionPane.showMessageDialog(null,msg , title, JOptionPane.INFORMATION_MESSAGE);
+
+    }
+
+    // Panelde uyarı olarak bilgi ekranı geldiğinde, üzerinde yazan OK butonu TAMAM şeklinde yeniden düzenlendi.
+    public static void optionPaneTR(){
+        UIManager.put("OptionPane.okButtonText", "Tamam");
+    }
 }
